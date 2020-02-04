@@ -1,0 +1,10 @@
+#create user
+POST http://localhost:4000/users/register
+Content-type: application/json
+
+{
+  "username": "treuna",
+  "firstName": "Teemu",
+  "lastName": "Reuna",
+  "password": "kokeilu"
+}
