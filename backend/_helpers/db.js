@@ -11,5 +11,6 @@ mongoose.Promise = global.Promise
 const db = mongoose.connection
 
 module.exports = {
-  User: require('../user/user.model')
+  User: require('../models/user.model'),
+  Stroller: require('../models/stroller.model')
 }

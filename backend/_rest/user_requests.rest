@@ -3,8 +3,13 @@ POST http://localhost:4000/users/register
 Content-type: application/json
 
 {
-  "username": "treuna",
-  "firstName": "Teemu",
-  "lastName": "Reuna",
+  "username": "testi",
+  "firstName": "Joku",
+  "lastName": "Vaan",
   "password": "kokeilu"
 }
+
+###
+
+#get all users
+GET http://localhost:4000/users
