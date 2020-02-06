@@ -1,5 +1,5 @@
 {
-  "name": "Stroller Roller",
+  "name": "stroller_roller",
   "version": "1.0.0",
   "description": "Simple web application for stroller comparison",
   "main": "index.js",
