@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "NodeJs API for MongoDB",
   "scripts": {
-    "start": "node ./server.js",
-    "start-dev": "nodemon ./server.js"
+    "start": "node ./src/server.js",
+    "start-dev": "nodemon ./src/server.js",
+    "code:check": "yarn code:lint; yarn code:format --check",
+    "code:clean": "yarn code:lint --fix; yarn code:format --write",
+    "code:lint": "eslint --ext .js,.jsx,.ts,.tsx \"src/\"",
+    "code:format": "prettier './src/**/**.{js,jsx,ts,tsx}'",
+    "code:check:rules": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
   },
   "repository": {
     "type": "git",
@@ -28,6 +33,7 @@
     "rootpath": "^0.1.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "poetic": "^1.4.0"
   }
 }
