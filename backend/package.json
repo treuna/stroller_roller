@@ -33,7 +33,6 @@
     "rootpath": "^0.1.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2",
-    "poetic": "^1.4.0"
+    "nodemon": "^2.0.2"
   }
 }
