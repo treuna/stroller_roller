@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "Stroller Roller Backend",
   "version": "1.0.0",
   "description": "NodeJs API for MongoDB",
   "scripts": {
