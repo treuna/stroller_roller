@@ -1,27 +1,25 @@
-require('rootpath')()
-const express = require('express')
-const cors = require('cors')
-const bodyParser = require('body-parser')
+import rootpath from 'rootpath'
+import express from 'express'
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import jwt from './_helpers/jwt'
+import  errorHandler from './_helpers/error-handler'
+import controller from './controller/controller'
 
-const controller = require('./controller/controller')
-const jwt = require('_helpers/jwt')
-const errorHandler = require('_helpers/error-handler')
-
-
+rootpath()
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
 
-//JWT to secure the api
+// JWT to secure the api
 app.use(jwt())
 
-//routes
-// app.use(['/stroller', '/strollers','/user', '/users'], controller)
+// routes
 app.use('/', controller)
 app.use(errorHandler)
 
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000
-const server = app.listen(port, function () {
-  console.log('Server running on port ' + port)
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`)
 })

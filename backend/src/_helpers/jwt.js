@@ -1,8 +1,18 @@
-const config = require('config.json')
-const expressJwt = require('express-jwt')
-const userService = require('../services/user.service')
+import expressJwt from 'express-jwt'
+import userService from '../services/user.service'
+// eslint-disable-next-line
+const config =  require('../../config')
 
-module.exports = jwt
+
+async function isRevoked(req, payload, done) {
+  const user = await userService.getById(payload.sub)
+  // revoke token if user no longer exists
+  if (!user) {
+    return done(null, true)
+  }
+
+  return done()
+}
 
 function jwt() {
   const secret = config.SECRET;
@@ -16,12 +26,4 @@ function jwt() {
   })
 }
 
-async function isRevoked(req, payload, done) {
-  const user = await userService.getById(payload.sub)
-  // revoke token if user no longer exists
-  if (!user) {
-    return done(null, true)
-  }
-
-  done()
-}
+export default jwt

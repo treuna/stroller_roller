@@ -1,18 +1,10 @@
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
+import db from '../_helpers/db'
+// eslint-disable-next-line
+const config =  require('../../config')
 
-const confg = require('config.json')
-const db = require('_helpers/db')
-const User = db.User
-
-module.exports = {
-  authenticate,
-  getAll,
-  getById,
-  create,
-  update,
-  delete: _delete
-}
+const { User } = db
 
 async function authenticate({ username, password }) {
   const user = await User.findOne({ username })
@@ -21,25 +13,26 @@ async function authenticate({ username, password }) {
     const token = jwt.sign({ sub: user.id }, config.SECRET)
     return { ...userWithOutHash, token }
   }
+  throw new Error('Invalid password or something')
 }
 
 async function getAll() {
-  return await User.find().select('-hash')
+  return User.find().select('-hash')
 }
 
-async function getById() {
-  return await User.findById(id).select('-hash')
+async function getById(id) {
+  return User.findById(id).select('-hash')
 }
 
 async function create(userParams) {
-  //validate
+  // validate
   if (await User.findOne({ username: userParams.username })) {
-    throw 'Username "' + userParams.username + '" is already taken'
+    throw new Error(`Username "${userParams.username}" is already taken`)
   }
 
   const user = new User(userParams)
 
-  //hash password
+  // hash password
   if (userParams.password) {
     user.hash = bcrypt.hashSync(userParams.password, 10)
   }
@@ -50,23 +43,33 @@ async function create(userParams) {
 async function update(id, userParams) {
   const user = await User.findById(id)
 
-  //validate
-  if (!user) throw 'User not found'
+  // validate
+  if (!user) throw new Error('User not found')
   if (user.username !== userParams.username && await User.findOne({ username: userParams.username })) {
-    throw 'Username "' + userParams.username + '" is already taken'
+    throw new Error(`Username "${userParams.username}" is already taken`)
   }
 
-  //hash password, if entered
+  // hash password, if entered
   if (userParams.username) {
+    // eslint-disable-next-line
     userParams.hash = bcrypt.hashSync(userParams.password, 10)
   }
 
-  //copy userParams to user
+  // copy userParams to user
   Object.assign(user, userParams)
 
   await user.save()
 }
 
-async function _delete(id) {
+async function deleteById(id) {
   await User.findByIdAndRemove(id)
+}
+
+export default {
+  authenticate,
+  getAll,
+  getById,
+  create,
+  update,
+  deleteById
 }

@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+import mongoose from 'mongoose'
+
+const { Schema } = mongoose
 
 const User = new Schema(
   {
@@ -13,4 +14,4 @@ const User = new Schema(
 
 User.set('toJson', { virtuals: true })
 
-module.exports = mongoose.model('users', User)
+export default mongoose.model('users', User)

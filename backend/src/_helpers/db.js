@@ -1,16 +1,16 @@
-const mongoose = require('mongoose')
-
-const config = require('config.json')
+import mongoose from 'mongoose'
+import * as userModel from '../models/user.model' 
+import * as strollerModel from '../models/stroller.model'
+// eslint-disable-next-line
+const config =  require('../../config')
 
 mongoose.connect(config.DB_ROUTE, { useNewUrlParser: true})
-  .catch(e => {
+  .catch((e) => {
     console.error('Connection erro', e.message)
   })
 mongoose.Promise = global.Promise
 
-const db = mongoose.connection
-
-module.exports = {
-  User: require('../models/user.model'),
-  Stroller: require('../models/stroller.model')
+export default {
+  User: userModel,
+  Stroller: strollerModel
 }

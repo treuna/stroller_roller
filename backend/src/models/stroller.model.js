@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+import mongoose from 'mongoose'
+
+const { Schema } = mongoose
 
 const Stroller = new Schema(
   {
@@ -21,4 +22,4 @@ const Stroller = new Schema(
 
 Stroller.set('toJson', { virtuals: true })
 
-module.exports = mongoose.model('strollers', Stroller)
+export default mongoose.model('strollers', Stroller)
