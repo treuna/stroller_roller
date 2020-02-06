@@ -1,2 +1,0 @@
-# get all strollers
-GET http://localhost:4000/strollers

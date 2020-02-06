@@ -43,7 +43,5 @@ async function getById(id) {
 }
 
 async function getAll() {
-  // console.log(46, Stroller.find({}).select('name'))
   return await Stroller.find({}).select('name')
-  // return {'lol': 'ei'}
 }

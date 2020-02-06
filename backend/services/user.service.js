@@ -24,7 +24,6 @@ async function authenticate({ username, password }) {
 }
 
 async function getAll() {
-  console.log(27)
   return await User.find().select('-hash')
 }
 
@@ -49,7 +48,6 @@ async function create(userParams) {
 }
 
 async function update(id, userParams) {
-  console.log(52)
   const user = await User.findById(id)
 
   //validate

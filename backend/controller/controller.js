@@ -34,9 +34,8 @@ function registerUser(req, res, next) {
 }
 
 function getAllUsers(req, res, next) {
-  console.log(37)
   userService.getAll()
-    .then(() => res.json({}))
+    .then(() => res.json({users}))
     .catch(err => next(err))
 }
 
@@ -47,7 +46,6 @@ function getCurrentUser(req, res, next) {
 }
 
 function geUsertById(req, res, next) {
-  console.log(50)
   userService.getById(req.params.id)
     .then(user => user ? res.json(user) : res.sendStatus(404))
     .catch(err => next(err))
@@ -85,13 +83,12 @@ function deleteStroller(req, res, next) {
 
 function getStrollerById(req, res, next) {
   strollerService.getById(req.params.id)
-    .then(user => user ? res.json(user) : res.sendStatus(404))
+    .then(stroller => stroller ? res.json(stroller) : res.sendStatus(404))
     .catch(err => next(err))
 }
 
 function getAllStrollers(req, res, next) {
-  console.log(91)
   strollerService.getAll()
-    .then(() => res.json({}))
+    .then(strollers => res.json({strollers}))
     .catch(err => next(err))
 }

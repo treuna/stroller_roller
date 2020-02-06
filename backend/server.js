@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 //JWT to secure the api
-// app.use(jwt())
+app.use(jwt())
 
 //routes
 // app.use(['/stroller', '/strollers','/user', '/users'], controller)

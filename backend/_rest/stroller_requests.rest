@@ -1,0 +1,7 @@
+# get all strollers
+GET http://localhost:4000/strollers
+
+###
+
+#get stroller by id
+GET http://localhost:4000/stroller/5e234b0b176a8a3f9899dd50
