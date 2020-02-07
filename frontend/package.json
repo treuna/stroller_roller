@@ -1,7 +1,7 @@
 {
   "name": "stroller_roller_frontend",
   "version": "1.0.0",
-  "description": "React Redux frontend for Rtroller Roller"
+  "description": "React Redux frontend for Rtroller Roller",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/treuna/stroller_roller.git"
