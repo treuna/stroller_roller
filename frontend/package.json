@@ -9,7 +9,12 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "code:check": "yarn code:lint; yarn code:format --check",
+    "code:clean": "yarn code:lint --fix; yarn code:format --write",
+    "code:lint": "eslint --ext .js,.jsx,.ts,.tsx \"src/\"",
+    "code:format": "prettier './src/**/**.{js,jsx,ts,tsx}'",
+    "code:check:rules": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
   },
   "dependencies": {
     "history": "^4.10.1",
@@ -28,6 +33,7 @@
     "babel-loader": "^8.0.5",
     "html-webpack-plugin": "^3.2.0",
     "path": "^0.12.7",
+    "poetic": "^1.4.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
